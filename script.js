@@ -1,11 +1,10 @@
 const gameItems = ['rock', 'paper', 'scissors'];
 
 // user input
-
 const userInput = () => prompt('Let\'s play Rock, Paper, Scissors! Type in your choice:');
-
 let userAnswer = userInput();
 let userLowCaseAnswer = userAnswer.toLowerCase();
+
 /* let userInput = prompt('Let\'s play Rock, Paper, Scissors! Type in your choice:'); */ //function more useful
 // it can be only rock or paper or scissors
 // chech if input is not an integer or empty string
@@ -18,12 +17,11 @@ function checkUserInput ()  {
         userInput();
 }}
 
-let userChoise = checkUserInput();
+let playerSelection = checkUserInput();
 
 // create function computerPlay that will randomly shoose one of the values like rock, paper or scissors
 const computerPlay = () => gameItems[Math.floor(Math.random() * gameItems.length)];
-computerPlay ();
-let computerChoice = computerPlay ();
+let computerSelection  = computerPlay ();
 
 // compare user input and computerPlay function
 // make few conditions that return true if user beats computer and false overwise. 
@@ -32,3 +30,11 @@ let computerChoice = computerPlay ();
 // if user lose, alert: "You Lose! here computer choice' beat 'here should be user input'"
 // alert 'even score' if user input and computerPlay has equal values
 // use capital first letter in result alert
+function playRound (userSel, compSel){
+    return userSel === 'rock' && compSel === 'scissors' ?  `You win! Rock beats Scissors!`
+    :  userSel === 'scissors' && compSel === 'paper' ? `You win! Scissors beats Paper!`
+    :  userSel === 'paper' && compSel === 'rock' ? `You win! Paper beats Rock!` 
+    :  userSel === compSel ? `Hmm... you both choose ${compSel}.`
+    : `You lose! ${compSel} beats ${userSel}!`
+   }
+alert (playRound(playerSelection,computerSelection ))
