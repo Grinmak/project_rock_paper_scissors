@@ -3,25 +3,28 @@ const gameItems = ['rock', 'paper', 'scissors'];
 // user input
 
 const userInput = () => prompt('Let\'s play Rock, Paper, Scissors! Type in your choice:');
-userInput();
-/* let userInput = prompt('Let\'s play Rock, Paper, Scissors! Type in your choice:'); */ //function more useful
 
+let userAnswer = userInput();
+let userLowCaseAnswer = userAnswer.toLowerCase();
+/* let userInput = prompt('Let\'s play Rock, Paper, Scissors! Type in your choice:'); */ //function more useful
 // it can be only rock or paper or scissors
 // chech if input is not an integer or empty string
 // alert if input integer or empty
 function checkUserInput ()  {
-    if (parseInt(userInput) !== isNaN()) {
-        alert ('You should type in rock, paper or scissors! Try again!');
+    if (userLowCaseAnswer === 'rock' || userLowCaseAnswer === 'paper' || userLowCaseAnswer === 'scissors') {
+        return userLowCaseAnswer;
+    } else {
+        alert ('You can use only rock, paper or scissors! Try again!');
         userInput();
-    }
-}
+}}
 
-checkUserInput ();
+let userChoise = checkUserInput();
 
-// create function computerPlay that will randomly shoose on of the values like rock, paper or scissors
-const computerPlay = () => (Math.floor(Math.random() * gameItems.length));
+// create function computerPlay that will randomly shoose one of the values like rock, paper or scissors
+const computerPlay = () => gameItems[Math.floor(Math.random() * gameItems.length)];
+computerPlay ();
+let computerChoice = computerPlay ();
 
-console.log(computerPlay())
 // compare user input and computerPlay function
 // make few conditions that return true if user beats computer and false overwise. 
 // conditions should be: rock>scissors; paper>rock; scissors>paper
