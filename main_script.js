@@ -15,11 +15,12 @@ const game = () => {
     function userAnswer () {      
         if(userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'){
             userInput = userInput[0].toUpperCase() + userInput.substring(1) ;
-        }else if (userInput === 0 || userInput !== NaN){
+/*         }else if (userInput === '' || userInput !== NaN){
             alert ('See you!'); 
-            userInput = ''; 
+            clear(); */
         }else { 
             alert('Wrong word! Try again!');
+            userAnswer(userInputFn());
                          
     }}
     userAnswer(userInputFn());
