@@ -8,6 +8,7 @@ const game = () => {
     const gameCount = 4;
  
 //offer user to play game
+function oneRound (){
     function userInputFn (){
     userInput = prompt ('Let\'s play Rock, Paper, Scissors! What you\'ll chose?').toLowerCase();
     }
@@ -42,19 +43,13 @@ function gameBattle (userFirst, pcSecond){
         computerScore++;
 }
 gameBattle (userInput, computerInput);
-
-//call loops
-function allFn(){
-    userAnswer(userInputFn());
-    computerPlay ();
-    gameBattle (userInput, computerInput);
 }
 
 
 
 for (let i=0; i < gameCount; i++){
         //console.log(i);
-        allFn();
+        oneRound();
 } 
 //winner function
 function winnerFn() {
