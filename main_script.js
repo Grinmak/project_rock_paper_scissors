@@ -5,7 +5,7 @@ const game = () => {
     let computerScore;
     let computerInput;
     let userInput;
-    const gameCount = 5;
+    const gameCount = 4;
  
 //offer user to play game
     function userInputFn (){
@@ -15,8 +15,9 @@ const game = () => {
     function userAnswer () {      
         if(userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'){
             userInput = userInput[0].toUpperCase() + userInput.substring(1) ;
-        }else if (userInput == 0){
-            alert ('See you!');  
+        }else if (userInput === 0 || userInput !== NaN){
+            alert ('See you!'); 
+            userInput = ''; 
         }else { 
             alert('Wrong word! Try again!');
                          
@@ -33,19 +34,36 @@ function gameBattle (userFirst, pcSecond){
         || (userFirst === 'scissors' && pcSecond === 'paper')
         || (userFirst === 'paper' && pcSecond === 'rock')) {
             alert (`You win! ${userFirst} beats ${pcSecond}!`);
+            ++playerScore;
     }else if (userFirst === pcSecond) {
         alert (`Hmm... you both choose ${pcSecond}.`);
-    }else alert (`You lose! ${pcSecond} beats ${userFirst}!`)
+    }else alert (`You lose! ${pcSecond} beats ${userFirst}!`);
+        computerScore++;
 }
 gameBattle (userInput, computerInput);
 
-
-
-
-
-/*     for (let i=0; i < gameCount; i++){
-        console.log(i);
-        game();
-    } */
+//call loops
+function allFn(){
+    userAnswer(userInputFn());
+    computerPlay ();
+    gameBattle (userInput, computerInput);
 }
+
+
+
+for (let i=0; i < gameCount; i++){
+        //console.log(i);
+        allFn();
+} 
+//winner function
+function winnerFn() {
+        if (playerScore > computerScore) {
+            alert (`You win ${playerScore} to ${computerScore}!`)
+        }else alert(`You lose!`);
+    }       
+
+winnerFn();
+}
+
+
 game ();
