@@ -29,9 +29,9 @@ const game = () => {
     computerPlay ();
 //compare answers
     function gameBattle (userFirst, pcSecond){
-        if ((userFirst === 'rock' && pcSecond === 'scissors') 
-        || (userFirst === 'scissors' && pcSecond === 'paper')
-        || (userFirst === 'paper' && pcSecond === 'rock')) {
+        if ((userFirst == 'Rock' && pcSecond == 'Scissors') 
+        || (userFirst == 'Scissors' && pcSecond == 'Paper')
+        || (userFirst == 'Paper' && pcSecond == 'Rock')) {
             alert (`You win! ${userFirst} beats ${pcSecond}!`);
             ++playerScore;
         }else if (userFirst === pcSecond) {
