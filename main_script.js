@@ -5,55 +5,56 @@ const game = () => {
     let computerScore;
     let computerInput;
     let userInput;
-    const gameCount = 4;
- 
-//offer user to play game
-    function oneRound (){
-        function userInputFn (){
-        userInput = prompt ('Let\'s play Rock, Paper, Scissors! What you\'ll chose?').toLowerCase();
-    }
-//call function to check if user's answer is correct
-    function userAnswer () {      
-        if(userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'){
-            userInput = userInput[0].toUpperCase() + userInput.substring(1) ;
-        }else { 
-            alert('Wrong word! Try again!');
-            userAnswer(userInputFn());
-                         
-    }}
-    userAnswer(userInputFn());
-//computer randomly choose a word  
-    function computerPlay () {
-        computerInput = gameWords[Math.floor(Math.random() * gameWords.length)];
-    }
-    computerPlay ();
-//compare answers
-    function gameBattle (userFirst, pcSecond){
-        if ((userFirst == 'Rock' && pcSecond == 'Scissors') 
-        || (userFirst == 'Scissors' && pcSecond == 'Paper')
-        || (userFirst == 'Paper' && pcSecond == 'Rock')) {
-            alert (`You win! ${userFirst} beats ${pcSecond}!`);
+
+//button nodes
+const body = document.querySelector('body');
+const divButton = document.createElement('div');
+const btnRock = document.createElement('button');
+const btnPaper = document.createElement('button');
+const btnScissors = document.createElement('button');
+const divResult = document.createElement('div');
+divButton.append(btnRock, btnPaper, btnScissors);
+body.appendChild(divButton);
+btnRock.textContent = 'Rock';
+btnPaper.textContent = 'Paper';
+btnScissors.textContent ='Scissors';
+divButton.setAttribute('style', 'display:flex;  justify-content: center; padding: 50px 0');
+body.appendChild(divResult);
+
+//events
+ const allButton = Array.from(document.querySelectorAll('button'));
+ allButton.forEach(btn => btn.addEventListener('click', btnSelector));
+
+ function btnSelector (event){
+    userInput = event.srcElement.innerText;
+    oneRound(userInput); 
+    //console.log(userInput);
+ }
+
+
+function oneRound (user){
+    computerInput = gameWords[Math.floor(Math.random() * gameWords.length)];
+    if ((user == 'Rock' && computerInput == 'Scissors') 
+    || (user == 'Scissors' && computerInput == 'Paper')
+    || (user == 'Paper' && computerInput == 'Rock')) {
+           alert (`You win! ${user} beats ${computerInput}!`);
             ++playerScore;
-        }else if (userFirst === pcSecond) {
-            alert (`Hmm... you both choose ${pcSecond}.`);
-        }else alert (`You lose! ${pcSecond} beats ${userFirst}!`);
+        }else if (user === computerInput) {
+           alert (`Hmm... you both choose ${computerInput}.`);
+        }else alert (`You lose! ${computerInput} beats ${user}!`);
             computerScore++;
     }
-    gameBattle (userInput, computerInput);
-    }
 
-    for (let i=0; i < gameCount; i++){
-        //console.log(i);
-        oneRound();
-    } 
+
+
 //winner function
-function winnerFn() {
+/* function winnerFn() {
         if (playerScore > computerScore) {
             alert (`You win ${playerScore} to ${computerScore}!`)
         }else alert(`You lose!`);
     }       
 
-winnerFn();
+winnerFn(); */
 }
 
 game ();
